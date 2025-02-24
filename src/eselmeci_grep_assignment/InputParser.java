@@ -1,5 +1,7 @@
 package eselmeci_grep_assignment;
 
+import java.io.FileNotFoundException;
+
 /**
  * The InputParser class parses the String input (from Grep class or GrepTest) and hands parameters to AnswerGenerator
  */
@@ -24,10 +26,11 @@ public class InputParser {
     static String parseInput(String input) throws
             InvalidInputLayoutException,
             NumberFormatException,
-            InvalidFlagException {
+            InvalidFlagException,
+            FileNotFoundException {
         params = null;
         input = input.trim();
-        if(input.isEmpty()) throw new InvalidInputLayoutException("No pattern provided");
+        if(input.isEmpty()) throw new InvalidInputLayoutException("Empty String provided");
         String[] splitInput = input.split("\\s+");
 
         /*
@@ -96,7 +99,7 @@ public class InputParser {
                     params.c = true;
                 } break;
                 default : {
-                    throw new InvalidFlagException("Invalid flag provided");
+                    throw new InvalidFlagException("Invalid flag provided : " + s.charAt(i));
                 }
             }
         }

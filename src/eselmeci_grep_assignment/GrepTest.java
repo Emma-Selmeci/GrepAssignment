@@ -1,5 +1,7 @@
 package eselmeci_grep_assignment;
 
+import java.util.regex.Pattern;
+
 public class GrepTest {
     static String s = "";
     static Exception error = null;
@@ -7,6 +9,14 @@ public class GrepTest {
     static int testNum = 1;
 
     public static void main(String[] args) {
+
+        Pattern pattern = Pattern.compile("((^)|(.*\\s))alma(($)|(\\s.*))");
+        System.out.println(pattern.matcher("alma").matches());
+        System.out.println(pattern.matcher("körte").matches());
+        System.out.println(pattern.matcher("egy alma van a fán").matches());
+        System.out.println(pattern.matcher("egy almafa van a fán").matches());
+
+        System.exit(0);
 
         //I'm pretty sure there's a MUCH better way of doing this, but I don't have the technical know-how
 
@@ -157,7 +167,7 @@ public class GrepTest {
 
         reset();
 
-        testString = "-3 -c -e a";
+        testString = "-3 -wc -e a";
         System.out.printf("parseInput() test %d, input \"%s\"\n", testNum++, testString);
         try {
             s = InputParser.parseInput(testString);
@@ -165,7 +175,7 @@ public class GrepTest {
         } catch (Exception e) {
             error = e;
         } finally {
-            if (error == null && p.num == 3 && p.c && p.pattern.equals("a")) {
+            if (error == null && p.num == 3 && p.c && p.w && p.pattern.equals("a")) {
                 System.out.println("Test passed");
             } else {
                 System.out.println("Test failed");

@@ -33,12 +33,8 @@ public class Grep {
             try {
                 output = InputParser.parseInput(input);
                 System.out.print(output);
-            } catch (InvalidInputLayoutException e) {
-                System.out.print("Invalid input layout");
-            } catch(NumberFormatException e) {
-                System.out.println("Invalin NUM parameter");
-            } catch(Exception e) {
-                System.out.print("An unexpected exception has occured");
+            } catch(Exception e) { //We catch all types of Exceptions and print the message
+                System.out.println(e.getMessage());
             }
 
             System.out.println(); //Line break for readability
